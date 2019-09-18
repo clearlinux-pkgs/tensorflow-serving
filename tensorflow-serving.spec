@@ -1,6 +1,6 @@
 Name     : tensorflow-serving
 Version  : 1.14.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/tensorflow/serving/archive/1.14.0.tar.gz
 Source0  : https://github.com/tensorflow/serving/archive/1.14.0.tar.gz
 Summary  : No detailed summary available
@@ -132,7 +132,7 @@ InstallCache %{SOURCE46}
 InstallCache %{SOURCE47}
 
 bazel clean
-bazel build --logging=0 --repository_cache=/tmp/cache --color=yes --curses=yes --config=nativeopt --local_ram_resources=2048 --verbose_failures --output_filter=DONT_MATCH_ANYTHING --incompatible_no_support_tools_in_action_inputs=false tensorflow_serving/model_servers:tensorflow_model_server
+bazel build --logging=0 --repository_cache=/tmp/cache --color=yes --curses=yes --config=release --local_ram_resources=2048 --verbose_failures --output_filter=DONT_MATCH_ANYTHING --incompatible_no_support_tools_in_action_inputs=false tensorflow_serving/model_servers:tensorflow_model_server
 
 %install
 export SOURCE_DATE_EPOCH=1566269687
