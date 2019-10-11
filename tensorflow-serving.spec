@@ -1,6 +1,6 @@
 Name     : tensorflow-serving
 Version  : 1.14.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/tensorflow/serving/archive/1.14.0.tar.gz
 Source0  : https://github.com/tensorflow/serving/archive/1.14.0.tar.gz
 Summary  : No detailed summary available
@@ -11,7 +11,7 @@ BuildRequires : bazel
 BuildRequires : curl
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-core
+BuildRequires : python3-core
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : six
