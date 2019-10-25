@@ -62,6 +62,9 @@ Source44 : http://mirror.tensorflow.org/github.com/google/snappy/archive/1.1.7.t
 Source45 : http://mirror.tensorflow.org/github.com/google/gemmlowp/archive/12fed0cd7cfcd9e169bf1925bc3a7a58725fdcc3.zip
 Source46 : http://mirror.tensorflow.org/github.com/LMDB/lmdb/archive/LMDB_0.9.22.tar.gz
 Source47 : http://mirror.tensorflow.org/github.com/glennrp/libpng/archive/v1.6.37.tar.gz
+Source48 : https://github.com/bazelbuild/rules_pkg/releases/download/0.2.0/rules_pkg-0.2.0.tar.gz
+Source49 : https://github.com/bazelbuild/rules_cc/archive/0d5f3f2768c6ca2faca0079a997a97ce22997a0c.zip
+Source50 : https://github.com/bazelbuild/rules_proto/archive/b0cc14be5da05168b01db282fe93bdf17aa2b9f4.tar.gz
 
 Patch1: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
 
@@ -130,6 +133,9 @@ InstallCache %{SOURCE44}
 InstallCache %{SOURCE45}
 InstallCache %{SOURCE46}
 InstallCache %{SOURCE47}
+InstallCache %{SOURCE48}
+InstallCache %{SOURCE49}
+InstallCache %{SOURCE50}
 
 bazel clean
 bazel build --logging=0 --repository_cache=/tmp/cache --color=yes --curses=yes --config=release --local_ram_resources=2048 --verbose_failures --output_filter=DONT_MATCH_ANYTHING --incompatible_no_support_tools_in_action_inputs=false tensorflow_serving/model_servers:tensorflow_model_server
