@@ -1,8 +1,8 @@
 Name     : tensorflow-serving
-Version  : 1.14.0
+Version  : 1.15.0
 Release  : 5
-URL      : https://github.com/tensorflow/serving/archive/1.14.0.tar.gz
-Source0  : https://github.com/tensorflow/serving/archive/1.14.0.tar.gz
+URL      : https://github.com/tensorflow/serving/archive/1.15.0.tar.gz
+Source0  : https://github.com/tensorflow/serving/archive/1.15.0.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -24,29 +24,29 @@ BuildRequires : wget
 BuildRequires : patch
 BuildRequires : numpy
 
-Source10 : https://github.com/tensorflow/tensorflow/archive/87989f69597d6b2d60de8f112e1e3cea23be7298.tar.gz
+Source10 : https://github.com/tensorflow/tensorflow/archive/590d6eef7e91a6a7392c8ffffb7b58f2e0c8bc6b.tar.gz
 Source11 : https://github.com/bazelbuild/rules_closure/archive/316e6133888bfc39fb860a4f1a31cfcbae485aef.tar.gz
-Source12 : https://github.com/protocolbuffers/protobuf/archive/5902e759108d14ee8e6b0b07653dac2f4e70ac73.tar.gz
+Source12 : https://github.com/protocolbuffers/protobuf/archive/310ba5ee72661c081129eb878c1bbcec936b20f0.tar.gz
 Source13 : https://github.com/bazelbuild/bazel-skylib/archive/0.7.0.tar.gz
-Source14 : https://github.com/abseil/abseil-cpp/archive/daf381e8535a1f1f1b8a75966a74e7cca63dee89.tar.gz
-Source15 : http://mirror.tensorflow.org/github.com/google/nsync/archive/1.20.2.tar.gz
+Source14 : https://github.com/abseil/abseil-cpp/archive/36d37ab992038f52276ca66b9da80c1cf0f57dc2.tar.gz
+Source15 : http://mirror.tensorflow.org/github.com/google/nsync/archive/1.22.0.tar.gz
 Source16 : http://mirror.tensorflow.org/download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.3.tar.gz
 Source17 : http://mirror.tensorflow.org/github.com/google/double-conversion/archive/3992066a95b823efc8ccc1baf82a1cfc73f6e9b8.zip
-Source18 : https://bitbucket.org/eigen/eigen/get/a0d250e79c79.tar.gz
+Source18 : https://bitbucket.org/eigen/eigen/get/49177915a14a.tar.gz
 Source19 : http://mirror.tensorflow.org/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz
-Source20 : http://pilotfiber.dl.sourceforge.net/project/giflib/giflib-5.1.4.tar.gz
+Source20 : http://pilotfiber.dl.sourceforge.net/project/giflib/giflib-5.2.1.tar.gz
 Source21 : https://github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.0.tar.gz
 Source22 : http://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.bz2
 Source23 : http://mirror.tensorflow.org/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz
-Source24 : http://mirror.tensorflow.org/curl.haxx.se/download/curl-7.60.0.tar.gz
+Source24 : http://mirror.tensorflow.org/curl.haxx.se/download/curl-7.65.3.tar.gz
 Source25 : http://mirror.tensorflow.org/github.com/google/boringssl/archive/7f634429a04abc48e2eb041c81c5235816c96514.tar.gz
 Source26 : http://mirror.tensorflow.org/github.com/open-source-parsers/jsoncpp/archive/1.8.4.tar.gz
-Source27 : https://github.com/intel/mkl-dnn/releases/download/v0.18/mklml_lnx_2019.0.3.20190220.tgz
-Source28 : https://github.com/intel/mkl-dnn/releases/download/v0.18/mklml_mac_2019.0.3.20190220.tgz
-Source29 : https://github.com/intel/mkl-dnn/releases/download/v0.18/mklml_win_2019.0.3.20190220.zip
-Source30 : https://github.com/intel/mkl-dnn/archive/v0.18.tar.gz
+Source27 : https://github.com/intel/mkl-dnn/releases/download/v0.20-rc/mklml_lnx_2019.0.5.20190502.tgz
+Source28 : https://github.com/intel/mkl-dnn/releases/download/v0.20-rc/mklml_mac_2019.0.5.20190502.tgz
+Source29 : https://github.com/intel/mkl-dnn/releases/download/v0.20-rc/mklml_win_2019.0.5.20190502.zip
+Source30 : https://github.com/intel/mkl-dnn/archive/v0.20.6.tar.gz
 Source31 : https://github.com/aws/aws-sdk-cpp/archive/1.5.8.tar.gz
-Source32 : https://github.com/llvm-mirror/llvm/archive/558b52b517b8c989dc2d7fffb5c580fa45aece34.tar.gz
+Source32 : https://github.com/llvm-mirror/llvm/archive/7a7e03f906aada0cf4b749b51213fe5784eeff84.tar.gz
 Source33 : https://github.com/hfp/libxsmm/archive/1.11.tar.gz
 Source34 : https://github.com/grpc/grpc/archive/4566c2a29ebec0835643b972eb99f4306c4234a3.tar.gz
 Source35 : http://mirror.tensorflow.org/github.com/edenhill/librdkafka/archive/v0.11.5.tar.gz
@@ -57,7 +57,7 @@ Source39 : https://github.com/libevent/libevent/archive/release-2.1.8-stable.zip
 Source40 : https://github.com/Tencent/rapidjson/archive/v1.1.0.zip
 Source41 : https://zlib.net/zlib-1.2.11.tar.gz
 Source42 : http://mirror.tensorflow.org/github.com/google/highwayhash/archive/fd3d9af80465e4383162e4a7c5e2f406e82dd968.tar.gz
-Source43 : http://mirror.tensorflow.org/github.com/google/re2/archive/2018-10-01.tar.gz
+Source43 : http://mirror.tensorflow.org/github.com/google/re2/archive/506cfa4bffd060c06ec338ce50ea3468daa6c814.tar.gz
 Source44 : http://mirror.tensorflow.org/github.com/google/snappy/archive/1.1.7.tar.gz
 Source45 : http://mirror.tensorflow.org/github.com/google/gemmlowp/archive/12fed0cd7cfcd9e169bf1925bc3a7a58725fdcc3.zip
 Source46 : http://mirror.tensorflow.org/github.com/LMDB/lmdb/archive/LMDB_0.9.22.tar.gz
@@ -65,8 +65,14 @@ Source47 : http://mirror.tensorflow.org/github.com/glennrp/libpng/archive/v1.6.3
 Source48 : https://github.com/bazelbuild/rules_pkg/releases/download/0.2.0/rules_pkg-0.2.0.tar.gz
 Source49 : https://github.com/bazelbuild/rules_cc/archive/0d5f3f2768c6ca2faca0079a997a97ce22997a0c.zip
 Source50 : https://github.com/bazelbuild/rules_proto/archive/b0cc14be5da05168b01db282fe93bdf17aa2b9f4.tar.gz
+Source51 : https://storage.googleapis.com/mirror.tensorflow.org/www.kurims.kyoto-u.ac.jp/~ooura/fft2d.tgz
+Source52 : https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/v0.20.1/rules_go-v0.20.1.tar.gz
+Source53 : https://storage.googleapis.com/mirror.tensorflow.org/github.com/keras-team/keras-applications/archive/1.0.8.tar.gz
+Source54 : https://github.com/google/flatbuffers/archive/v1.11.0.tar.gz
+Source55 : https://github.com/intel/ARM_NEON_2_x86_SSE/archive/1200fe90bb174a6224a525ee60148671a786a71f.tar.gz
 
-Patch1: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
+Patch1: 0001-Solved-bazel-build-issue.patch
+Patch2: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
 
 %description
 # TensorFlow Serving: A flexible, high-performance serving system for machine learning models
@@ -76,9 +82,10 @@ Patch1: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
 ![Docker GPU Nightly Build Status](https://storage.googleapis.com/tensorflow-serving-kokoro-build-badges/docker-gpu-nightly.svg)
 
 %prep
-%setup -q -n serving-1.14.0
+%setup -q -n serving-1.15.0
 
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -136,9 +143,14 @@ InstallCache %{SOURCE47}
 InstallCache %{SOURCE48}
 InstallCache %{SOURCE49}
 InstallCache %{SOURCE50}
+InstallCache %{SOURCE51}
+InstallCache %{SOURCE52}
+InstallCache %{SOURCE53}
+InstallCache %{SOURCE54}
+InstallCache %{SOURCE55}
 
 bazel clean
-bazel build --logging=0 --repository_cache=/tmp/cache --color=yes --curses=yes --config=release --local_ram_resources=2048 --verbose_failures --output_filter=DONT_MATCH_ANYTHING --incompatible_no_support_tools_in_action_inputs=false tensorflow_serving/model_servers:tensorflow_model_server
+bazel build --logging=0 --repository_cache=/tmp/cache --color=yes --curses=yes --config=release --local_ram_resources=2048 --verbose_failures --output_filter=DONT_MATCH_ANYTHING --incompatible_string_join_requires_strings=false --incompatible_no_support_tools_in_action_inputs=false tensorflow_serving/model_servers:tensorflow_model_server
 
 %install
 export SOURCE_DATE_EPOCH=1566269687

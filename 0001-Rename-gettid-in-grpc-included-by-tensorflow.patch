@@ -1,4 +1,4 @@
-From 658c0a55600ddeb4cef35a5233328ed1a367a74a Mon Sep 17 00:00:00 2001
+From 8bcfa3871e695b2c51eaa24678969419230de7b9 Mon Sep 17 00:00:00 2001
 From: Jianjun Liu <jianjun.liu@intel.com>
 Date: Fri, 30 Aug 2019 09:06:29 +0800
 Subject: [PATCH] Rename gettid in grpc included by tensorflow
@@ -8,34 +8,26 @@ glibc.
 
 Signed-off-by: Jianjun Liu <jianjun.liu@intel.com>
 ---
- tensorflow_serving/workspace.bzl          | 14 ++++
- third_party/BUILD                         |  1 +
- third_party/Rename-gettid-functions.patch | 78 +++++++++++++++++++++++
- 3 files changed, 93 insertions(+)
+ tensorflow_serving/workspace.bzl              | 14 ++++
+ .../0001-Rename-gettid-functions.patch        | 81 +++++++++++++++++++
+ third_party/BUILD                             |  1 +
+ 3 files changed, 96 insertions(+)
+ create mode 100644 third_party/0001-Rename-gettid-functions.patch
  create mode 100644 third_party/BUILD
- create mode 100644 third_party/Rename-gettid-functions.patch
 
 diff --git a/tensorflow_serving/workspace.bzl b/tensorflow_serving/workspace.bzl
-index 7c6ab33..1746c53 100644
+index c24c53d6..1500cc00 100644
 --- a/tensorflow_serving/workspace.bzl
 +++ b/tensorflow_serving/workspace.bzl
-@@ -1,6 +1,7 @@
- # TensorFlow Serving external dependencies that can be loaded in WORKSPACE
- # files.
- 
-+load("@org_tensorflow//third_party:repo.bzl", "tf_http_archive")
- load("@org_tensorflow//tensorflow:workspace.bzl", "tf_workspace")
- load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
- 
-@@ -48,3 +49,16 @@ def tf_serving_workspace():
-         strip_prefix = "libevent-release-2.1.8-stable",
-         build_file = "@//third_party/libevent:BUILD",
+@@ -56,3 +56,17 @@ def tf_serving_workspace():
+             "https://github.com/abseil/abseil-cpp/archive/36d37ab992038f52276ca66b9da80c1cf0f57dc2.tar.gz",
+         ],
      )
 +
 +    # ===== Override TF defined `grpc` to fix gettid conflict because of glibc 2.30.
 +    tf_http_archive(
 +        name = "grpc",
-+	patch_file = str(Label("//third_party:Rename-gettid-functions.patch")),
++	patch_file = str(Label("//third_party:0001-Rename-gettid-functions.patch")),
 +        sha256 = "67a6c26db56f345f7cee846e681db2c23f919eba46dd639b09462d1b6203d28c",
 +        strip_prefix = "grpc-4566c2a29ebec0835643b972eb99f4306c4234a3",
 +        system_build_file = str(Label("@org_tensorflow//third_party/systemlibs:grpc.BUILD")),
@@ -44,25 +36,19 @@ index 7c6ab33..1746c53 100644
 +            "https://github.com/grpc/grpc/archive/4566c2a29ebec0835643b972eb99f4306c4234a3.tar.gz",
 +        ],
 +    )
-diff --git a/third_party/BUILD b/third_party/BUILD
-new file mode 100644
-index 0000000..fe756e1
---- /dev/null
-+++ b/third_party/BUILD
-@@ -0,0 +1 @@
-+licenses(["notice"])  # Apache 2.0
-diff --git a/third_party/Rename-gettid-functions.patch b/third_party/Rename-gettid-functions.patch
-new file mode 100644
-index 0000000..90bd911
---- /dev/null
-+++ b/third_party/Rename-gettid-functions.patch
-@@ -0,0 +1,78 @@
-+From d1d017390b799c59d6fdf7b8afa6136d218bdd61 Mon Sep 17 00:00:00 2001
-+From: Benjamin Peterson <benjamin@dropbox.com>
-+Date: Fri, 3 May 2019 08:11:00 -0700
-+Subject: [PATCH] Rename gettid() functions.
 +
-+glibc 2.30 will declare its own gettid; see https://sourceware.org/git/?p=glibc.git;a=commit;h=1d0fc213824eaa2a8f8c4385daaa698ee8fb7c92. Rename the grpc versions to avoid naming conflicts.
+diff --git a/third_party/0001-Rename-gettid-functions.patch b/third_party/0001-Rename-gettid-functions.patch
+new file mode 100644
+index 00000000..bc757afd
+--- /dev/null
++++ b/third_party/0001-Rename-gettid-functions.patch
+@@ -0,0 +1,81 @@
++From bd7dc8ccfe8465ced936ea61bd3db9365371a045 Mon Sep 17 00:00:00 2001
++From: "se.hun.kim@intel.com" <kimsehun@intel.com>
++Date: Mon, 28 Oct 2019 13:11:32 -0700
++Subject: [PATCH] Rename gettid functions
++
++Signed-off-by: se.hun.kim@intel.com <kimsehun@intel.com>
 +---
 + src/core/lib/gpr/log_linux.cc          | 4 ++--
 + src/core/lib/gpr/log_posix.cc          | 4 ++--
@@ -70,7 +56,7 @@ index 0000000..90bd911
 + 3 files changed, 6 insertions(+), 6 deletions(-)
 +
 +diff --git a/src/core/lib/gpr/log_linux.cc b/src/core/lib/gpr/log_linux.cc
-+index 561276f0c20..8b597b4cf2f 100644
++index 561276f0c2..8b597b4cf2 100644
 +--- a/src/core/lib/gpr/log_linux.cc
 ++++ b/src/core/lib/gpr/log_linux.cc
 +@@ -40,7 +40,7 @@
@@ -92,7 +78,7 @@ index 0000000..90bd911
 +   timer = static_cast<time_t>(now.tv_sec);
 +   final_slash = strrchr(args->file, '/');
 +diff --git a/src/core/lib/gpr/log_posix.cc b/src/core/lib/gpr/log_posix.cc
-+index b6edc14ab6b..2f7c6ce3760 100644
++index b6edc14ab6..2f7c6ce376 100644
 +--- a/src/core/lib/gpr/log_posix.cc
 ++++ b/src/core/lib/gpr/log_posix.cc
 +@@ -31,7 +31,7 @@
@@ -114,10 +100,10 @@ index 0000000..90bd911
 +   fprintf(stderr, "%-70s %s\n", prefix, args->message);
 +   gpr_free(prefix);
 +diff --git a/src/core/lib/iomgr/ev_epollex_linux.cc b/src/core/lib/iomgr/ev_epollex_linux.cc
-+index 08116b3ab53..76f59844312 100644
++index b6d13b44d1..e1cda21b3e 100644
 +--- a/src/core/lib/iomgr/ev_epollex_linux.cc
 ++++ b/src/core/lib/iomgr/ev_epollex_linux.cc
-+@@ -1102,7 +1102,7 @@ static void end_worker(grpc_pollset* pollset, grpc_pollset_worker* worker,
++@@ -1103,7 +1103,7 @@ static void end_worker(grpc_pollset* pollset, grpc_pollset_worker* worker,
 + }
 + 
 + #ifndef NDEBUG
@@ -126,15 +112,25 @@ index 0000000..90bd911
 + #endif
 + 
 + /* pollset->mu lock must be held by the caller before calling this.
-+@@ -1122,7 +1122,7 @@ static grpc_error* pollset_work(grpc_pollset* pollset,
++@@ -1123,7 +1123,7 @@ static grpc_error* pollset_work(grpc_pollset* pollset,
 + #define WORKER_PTR (&worker)
 + #endif
 + #ifndef NDEBUG
 +-  WORKER_PTR->originator = gettid();
 ++  WORKER_PTR->originator = sys_gettid();
 + #endif
-+   if (GRPC_TRACE_FLAG_ENABLED(grpc_polling_trace)) {
++   if (grpc_polling_trace.enabled()) {
 +     gpr_log(GPR_INFO,
++-- 
++2.17.1
++
+diff --git a/third_party/BUILD b/third_party/BUILD
+new file mode 100644
+index 00000000..fe756e1b
+--- /dev/null
++++ b/third_party/BUILD
+@@ -0,0 +1 @@
++licenses(["notice"])  # Apache 2.0
 -- 
-2.22.0
+2.24.0
 

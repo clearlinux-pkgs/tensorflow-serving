@@ -1,0 +1,26 @@
+From b42800db7b3894d0ca03cd13198e80a29cdc8291 Mon Sep 17 00:00:00 2001
+From: Choong Yin Thong <yin.thong.choong@intel.com>
+Date: Tue, 19 Nov 2019 09:33:03 +0800
+Subject: [PATCH] Solved bazel build issue
+
+Signed-off-by: Choong Yin Thong <yin.thong.choong@intel.com>
+---
+ tensorflow_serving/apis/BUILD | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tensorflow_serving/apis/BUILD b/tensorflow_serving/apis/BUILD
+index acff5308..ada68112 100644
+--- a/tensorflow_serving/apis/BUILD
++++ b/tensorflow_serving/apis/BUILD
+@@ -21,7 +21,7 @@ filegroup(
+ load("//tensorflow_serving:serving.bzl", "serving_proto_library")
+ load("//tensorflow_serving:serving.bzl", "serving_proto_library_py")
+ load("//tensorflow_serving:serving.bzl", "serving_go_grpc_library")
+-load("@org_tensorflow//tensorflow/core:platform/default/build_config.bzl", "tf_jspb_proto_library", "tf_pyclif_proto_library")
++load("@org_tensorflow//tensorflow/core/platform:default/build_config.bzl", "tf_jspb_proto_library", "tf_pyclif_proto_library")
+ 
+ serving_proto_library(
+     name = "get_model_metadata_proto",
+-- 
+2.24.0
+
