@@ -73,6 +73,7 @@ Source55 : https://github.com/intel/ARM_NEON_2_x86_SSE/archive/1200fe90bb174a622
 
 Patch1: 0001-Solved-bazel-build-issue.patch
 Patch2: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
+Patch3: 0001-Fixes-CVE-2019-5481-and-5482.patch
 
 %description
 # TensorFlow Serving: A flexible, high-performance serving system for machine learning models
@@ -86,6 +87,7 @@ Patch2: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
 
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
