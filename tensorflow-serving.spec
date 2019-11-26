@@ -1,8 +1,8 @@
 Name     : tensorflow-serving
-Version  : 1.15.0
-Release  : 8
-URL      : https://github.com/tensorflow/serving/archive/1.15.0.tar.gz
-Source0  : https://github.com/tensorflow/serving/archive/1.15.0.tar.gz
+Version  : 2.0.0
+Release  : 9
+URL      : https://github.com/tensorflow/serving/archive/2.0.0.zip
+Source0  : https://github.com/tensorflow/serving/archive/2.0.0.zip
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -24,15 +24,15 @@ BuildRequires : wget
 BuildRequires : patch
 BuildRequires : numpy
 
-Source10 : https://github.com/tensorflow/tensorflow/archive/590d6eef7e91a6a7392c8ffffb7b58f2e0c8bc6b.tar.gz
-Source11 : https://github.com/bazelbuild/rules_closure/archive/316e6133888bfc39fb860a4f1a31cfcbae485aef.tar.gz
+Source10 : https://github.com/tensorflow/tensorflow/archive/64c3d382cadf7bbe8e7e99884bede8284ff67f56.tar.gz
+Source11 : https://github.com/bazelbuild/rules_closure/archive/308b05b2419edb5c8ee0471b67a40403df940149.tar.gz
 Source12 : https://github.com/protocolbuffers/protobuf/archive/310ba5ee72661c081129eb878c1bbcec936b20f0.tar.gz
-Source13 : https://github.com/bazelbuild/bazel-skylib/archive/0.7.0.tar.gz
+Source13 : https://github.com/bazelbuild/bazel-skylib/releases/download/0.8.0/bazel-skylib.0.8.0.tar.gz
 Source14 : https://github.com/abseil/abseil-cpp/archive/36d37ab992038f52276ca66b9da80c1cf0f57dc2.tar.gz
-Source15 : http://mirror.tensorflow.org/github.com/google/nsync/archive/1.22.0.tar.gz
+Source15 : http://mirror.tensorflow.org/github.com/google/nsync/archive/1.20.2.tar.gz
 Source16 : http://mirror.tensorflow.org/download.open-mpi.org/release/hwloc/v2.0/hwloc-2.0.3.tar.gz
 Source17 : http://mirror.tensorflow.org/github.com/google/double-conversion/archive/3992066a95b823efc8ccc1baf82a1cfc73f6e9b8.zip
-Source18 : https://bitbucket.org/eigen/eigen/get/49177915a14a.tar.gz
+Source18 : https://bitbucket.org/eigen/eigen/get/049af2f56331.tar.gz
 Source19 : http://mirror.tensorflow.org/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz
 Source20 : http://pilotfiber.dl.sourceforge.net/project/giflib/giflib-5.2.1.tar.gz
 Source21 : https://github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.0.tar.gz
@@ -44,7 +44,7 @@ Source26 : http://mirror.tensorflow.org/github.com/open-source-parsers/jsoncpp/a
 Source27 : https://github.com/intel/mkl-dnn/releases/download/v0.20-rc/mklml_lnx_2019.0.5.20190502.tgz
 Source28 : https://github.com/intel/mkl-dnn/releases/download/v0.20-rc/mklml_mac_2019.0.5.20190502.tgz
 Source29 : https://github.com/intel/mkl-dnn/releases/download/v0.20-rc/mklml_win_2019.0.5.20190502.zip
-Source30 : https://github.com/intel/mkl-dnn/archive/v0.20.6.tar.gz
+Source30 : https://github.com/intel/mkl-dnn/archive/v0.20.3.tar.gz
 Source31 : https://github.com/aws/aws-sdk-cpp/archive/1.5.8.tar.gz
 Source32 : https://github.com/llvm-mirror/llvm/archive/7a7e03f906aada0cf4b749b51213fe5784eeff84.tar.gz
 Source33 : https://github.com/hfp/libxsmm/archive/1.11.tar.gz
@@ -70,10 +70,12 @@ Source52 : https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rul
 Source53 : https://storage.googleapis.com/mirror.tensorflow.org/github.com/keras-team/keras-applications/archive/1.0.8.tar.gz
 Source54 : https://github.com/google/flatbuffers/archive/v1.11.0.tar.gz
 Source55 : https://github.com/intel/ARM_NEON_2_x86_SSE/archive/1200fe90bb174a6224a525ee60148671a786a71f.tar.gz
+Source56 : https://github.com/tensorflow/text/archive/a2f2ad05638c37161d2f06bdbf6eb5e0858b00e6.zip
 
 Patch1: 0001-Solved-bazel-build-issue.patch
 Patch2: 0001-Rename-gettid-in-grpc-included-by-tensorflow.patch
 Patch3: 0001-Fixes-CVE-2019-5481-and-5482.patch
+Patch4: 0001-Fix-build-issues-with-bazel.patch
 
 %description
 # TensorFlow Serving: A flexible, high-performance serving system for machine learning models
@@ -83,11 +85,12 @@ Patch3: 0001-Fixes-CVE-2019-5481-and-5482.patch
 ![Docker GPU Nightly Build Status](https://storage.googleapis.com/tensorflow-serving-kokoro-build-badges/docker-gpu-nightly.svg)
 
 %prep
-%setup -q -n serving-1.15.0
+%setup -q -n serving-2.0.0
 
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -150,6 +153,7 @@ InstallCache %{SOURCE52}
 InstallCache %{SOURCE53}
 InstallCache %{SOURCE54}
 InstallCache %{SOURCE55}
+InstallCache %{SOURCE56}
 
 bazel clean
 bazel build --logging=0 --repository_cache=/tmp/cache --color=yes --curses=yes --config=release --local_ram_resources=2048 --verbose_failures --output_filter=DONT_MATCH_ANYTHING --incompatible_string_join_requires_strings=false --incompatible_no_support_tools_in_action_inputs=false tensorflow_serving/model_servers:tensorflow_model_server
