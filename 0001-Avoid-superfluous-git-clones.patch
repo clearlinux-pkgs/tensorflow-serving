@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Thu, 15 Oct 2020 05:36:57 +0000
+Subject: [PATCH] Avoid superfluous git clones
+
+By declaring repositories manually like this, we can avoid later
+attempts to run `git clone` commands.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ WORKSPACE | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/WORKSPACE b/WORKSPACE
+index 68ebad7..124003d 100644
+--- a/WORKSPACE
++++ b/WORKSPACE
+@@ -17,6 +17,15 @@ tensorflow_http_archive(
+ 
+ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+ 
++# Download the rules_docker repository at release v0.14.4 to avoid later
++# download attempt of a git clone.
++http_archive(
++    name = "io_bazel_rules_docker",
++    sha256 = "4521794f0fba2e20f3bf15846ab5e01d5332e587e9ce81629c7f96c793bb7036",
++    strip_prefix = "rules_docker-0.14.4",
++    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.14.4/rules_docker-v0.14.4.tar.gz"],
++)
++
+ http_archive(
+     name = "rules_pkg",
+     sha256 = "352c090cc3d3f9a6b4e676cf42a6047c16824959b438895a76c2989c6d7c246a",
