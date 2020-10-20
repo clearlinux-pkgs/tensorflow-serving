@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 20 Oct 2020 18:45:14 +0000
+Subject: [PATCH] Update libjpeg-turbo to 2.0.5
+
+Resolves CVE-2020-13790.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ WORKSPACE | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/WORKSPACE b/WORKSPACE
+index 124003d..bb97e6c 100644
+--- a/WORKSPACE
++++ b/WORKSPACE
+@@ -26,6 +26,20 @@ http_archive(
+     urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.14.4/rules_docker-v0.14.4.tar.gz"],
+ )
+ 
++# Update libjpeg-turbo to 2.0.5, overriding the repository for 2.0.4 from tensorflow
++load("@org_tensorflow//third_party:repo.bzl", "third_party_http_archive")
++third_party_http_archive(
++    name = "libjpeg_turbo",
++    urls = [
++        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.5.tar.gz",
++        "https://github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.5.tar.gz",
++    ],
++    sha256 = "b3090cd37b5a8b3e4dbd30a1311b3989a894e5d3c668f14cbc6739d77c9402b7",
++    strip_prefix = "libjpeg-turbo-2.0.5",
++    build_file = "@org_tensorflow//third_party/jpeg:BUILD.bazel",
++    system_build_file = "@org_tensorflow//third_party/jpeg:BUILD.system",
++)
++
+ http_archive(
+     name = "rules_pkg",
+     sha256 = "352c090cc3d3f9a6b4e676cf42a6047c16824959b438895a76c2989c6d7c246a",

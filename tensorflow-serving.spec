@@ -1,6 +1,6 @@
 Name     : tensorflow-serving
 Version  : 2.3.0
-Release  : 10
+Release  : 11
 URL      : https://github.com/tensorflow/serving/archive/2.3.0/tensorflow-serving-2.3.0.tar.gz
 Source0  : https://github.com/tensorflow/serving/archive/2.3.0/tensorflow-serving-2.3.0.tar.gz
 Summary  : Serving system for machine learning models
@@ -66,7 +66,7 @@ Source45: https://github.com/google/snappy/archive/1.1.8/snappy-1.1.8.tar.gz
 Source46: https://github.com/Tencent/rapidjson/archive/v1.1.0/rapidjson-1.1.0.zip
 Source47: https://github.com/google/sentencepiece/archive/1.0.0/sentencepiece-1.0.0.zip
 Source48: https://storage.googleapis.com/mirror.tensorflow.org/github.com/joe-kuo/sobol_data/archive/835a7d7b1ee3bc83e575e302a985c66ec4b65249.tar.gz
-Source49: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.4/libjpeg-turbo-2.0.4.tar.gz
+Source49: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/2.0.5/libjpeg-turbo-2.0.5.tar.gz
 Source50: https://storage.googleapis.com/mirror.tensorflow.org/pilotfiber.dl.sourceforge.net/project/giflib/giflib-5.2.1.tar.gz
 Source51: https://github.com/google/flatbuffers/archive/v1.12.0/flatbuffers-1.12.0.tar.gz
 Source52: https://github.com/LMDB/lmdb/archive/LMDB_0.9.22/lmdb-0.9.22.tar.gz
@@ -91,6 +91,7 @@ Source70: https://storage.googleapis.com/mirror.tensorflow.org/github.com/pytorc
 # SOURCES END
 
 Patch1 : 0001-Avoid-superfluous-git-clones.patch
+Patch2 : 0002-Update-libjpeg-turbo-to-2.0.5.patch
 
 %description
 TensorFlow Serving is a flexible, high-performance serving system for machine
@@ -103,6 +104,7 @@ models and data.
 %prep
 %setup -q -n serving-%{version}
 %patch1 -p1
+%patch2 -p1
 
 InstallCacheBazel() {
   sha256=$(sha256sum $1 | cut -f1 -d" ")
