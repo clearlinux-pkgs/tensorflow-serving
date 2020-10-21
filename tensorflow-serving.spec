@@ -1,6 +1,6 @@
 Name     : tensorflow-serving
 Version  : 2.3.0
-Release  : 11
+Release  : 12
 URL      : https://github.com/tensorflow/serving/archive/2.3.0/tensorflow-serving-2.3.0.tar.gz
 Source0  : https://github.com/tensorflow/serving/archive/2.3.0/tensorflow-serving-2.3.0.tar.gz
 Summary  : Serving system for machine learning models
@@ -193,7 +193,6 @@ bazel clean
 bazel build \
   --repository_cache=/var/tmp/cache \
   --config=release \
-  --record_rule_instantiation_callstack \
   --verbose_failures \
   //tensorflow_serving/model_servers:tensorflow_model_server
 
