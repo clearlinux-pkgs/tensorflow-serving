@@ -1,6 +1,6 @@
 Name     : tensorflow-serving
 Version  : 2.3.0
-Release  : 13
+Release  : 14
 URL      : https://github.com/tensorflow/serving/archive/2.3.0/tensorflow-serving-2.3.0.tar.gz
 Source0  : https://github.com/tensorflow/serving/archive/2.3.0/tensorflow-serving-2.3.0.tar.gz
 Summary  : Serving system for machine learning models
